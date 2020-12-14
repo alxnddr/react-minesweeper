@@ -11,9 +11,9 @@ interface Props {
 }
 
 interface FormData {
-  rows: number
-  cols: number
-  mines: number
+  rows: string
+  cols: string
+  mines: string
 }
 
 // TODO: [AL]: This component is the total lowest quality mess, but it is not that important. I will refactor later if needed.
@@ -23,10 +23,10 @@ export const SettingsModal = ({ isOpen, onClose }: Props) => {
 
   const handleGameStart = handleSubmit(({ rows, cols, mines }) => {
     startGame({
-      mines,
+      mines: parseInt(mines),
       size: {
-        rows,
-        cols
+        rows: parseInt(rows),
+        cols: parseInt(cols)
       }
     })
     onClose()

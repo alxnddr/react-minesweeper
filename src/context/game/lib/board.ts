@@ -19,7 +19,7 @@ const generateMinesLocations = (
   )
   const totalCells = size.cols * size.rows
 
-  for (let i = 0; i < totalCells - excludedFlatIndices.size; i++) {
+  for (let i = 0; i < totalCells; i++) {
     if (!excludedFlatIndices.has(i)) {
       availableCells.push(flatIndexToLocation(i, size.cols))
     }
@@ -28,7 +28,7 @@ const generateMinesLocations = (
   return shuffle(availableCells).slice(0, mines)
 }
 
-const getOpenBombNeighbourBoard = (position: Position, board: Cell[][]) => {
+const getOpenMineNeighbourBoard = (position: Position, board: Cell[][]) => {
   const { row, col } = position
 
   return board.map((cells, i) => {
@@ -49,17 +49,17 @@ const getOpenBombNeighbourBoard = (position: Position, board: Cell[][]) => {
   })
 }
 
-const getOpenBombBoard = (position: Position, board: Cell[][]) => {
+const getOpenMineBoard = (position: Position, board: Cell[][]) => {
   const { row, col } = position
 
   return board.map((cells, i) => {
     return cells.map((cell, j) => {
       if (cell.value === Value.mine) {
-        const isOpenedBomb = i === row && j === col
+        const isOpenedMine = i === row && j === col
 
         return {
           value: cell.value,
-          state: isOpenedBomb ? State.lost : State.revealed
+          state: isOpenedMine ? State.lost : State.revealed
         }
       }
 
@@ -130,11 +130,11 @@ export const getNextBoard = (openedPosition: Position, board: Cell[][]) => {
 
   switch (value) {
     case Value.mine:
-      return getOpenBombBoard(openedPosition, board)
+      return getOpenMineBoard(openedPosition, board)
     case Value.empty:
       return getOpenEmptyCellBoard(openedPosition, board)
     default:
-      return getOpenBombNeighbourBoard(openedPosition, board)
+      return getOpenMineNeighbourBoard(openedPosition, board)
   }
 }
 

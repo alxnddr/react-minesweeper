@@ -6,6 +6,7 @@ export const ResetButton = () => {
   const { status } = useGame()
   const { reset } = useGameDispatch()
 
+
   return (
     <ResetButtonRoot onClick={() => reset()}>
       {status === Status.inProgress && '🙂'}

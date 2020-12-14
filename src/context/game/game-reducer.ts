@@ -1,5 +1,4 @@
-import { State } from './../../types/index'
-import { Settings, Position, Status } from 'src/types'
+import { Settings, Position, Status, State } from 'src/types'
 import {
   getToggleMarkingCellBoard,
   getEmptyBoard,
