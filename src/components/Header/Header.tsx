@@ -5,11 +5,11 @@ import { Stats } from './Stats'
 import { useGame } from 'src/context/game'
 
 export const Header = () => {
-  const { markedCount } = useGame()
+  const { markedCount, settings } = useGame()
 
   return (
     <HeaderRoot>
-      <Stats value={markedCount} />
+      <Stats value={settings.mines - markedCount} />
       <ResetButton />
       <Timer />
     </HeaderRoot>

@@ -69,7 +69,7 @@ export const SettingsModal = ({ isOpen, onClose }: Props) => {
           <ErrorBox>
             {errors.rows && <p>Height must be between 1 and 500</p>}
             {errors.cols && <p>Width must be between 5 and 500</p>}
-            {errors.cols && <p>Width must be between 1 and 25000</p>}
+            {errors.mines && <p>Mines count must be between 1 and 25000</p>}
           </ErrorBox>
           <InputGroup>
             <input type='submit' value='Start' />
